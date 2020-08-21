@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Photon</title>
+  </head>
+  <body>
+    <header class="header">
+      <a id="logo" href="/">Photon</a>
+      <a href="https://www.pexels.com"
+        >Photos provided by
+        <img
+          src="https://images.pexels.com/lib/api/pexels-white.png"
+          alt="Pexels logo"
+      /></a>
+    </header>
+
+    <main class="main">
+      <section class="search" id="search">
+        <h1 id="heading">What pictures would you like to see?</h1>
+
+        <form class="search-form">
+          <input type="text" name="search" id="search" class="search-input" />
+          <button type="submit" class="submit-btn" id="submit-button">
+            Search
+          </button>
+        </form>
+      </section>
+
+      <section class="gallery" id="gallery"></section>
+
+      <section class="more-button">
+        <button class="more">More</button>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
