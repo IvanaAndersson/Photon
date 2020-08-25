@@ -1,6 +1,12 @@
+@import "/toggle.css";
+
 :root {
   --color-text: #ffffff;
   --color-special: #00b982;
+  --dark-bg: #2b2b2b;
+  --color-text-body: #fff;
+  --dark-bg-input: #455243;
+  --color-text-input: rgb(216, 216, 216);
 }
 
 * {
@@ -93,4 +99,20 @@ button {
 
 .more {
   padding: 1rem 3rem;
+}
+
+/*
+--------------------------------------------------------------------------------
+DARK MODE STYLES
+--------------------------------------------------------------------------------
+*/
+
+.darkmode {
+  background: var(--dark-bg);
+  color: var(--color-text-body);
+}
+
+.darkmode .search-form input {
+  background: var(--dark-bg-input);
+  color: var(--color-text-input);
 }

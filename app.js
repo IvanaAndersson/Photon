@@ -54,3 +54,39 @@ form.addEventListener("submit", async (e) => {
   heading.textContent = `Your results for '${queryText}'`;
   renderPictures(data);
 });
+
+// TOGGLING LIGHT AND DARK MODE
+let darkMode = localStorage.getItem("darkMode");
+const modeToggler = document.getElementById("toggle--knob");
+
+const enableDarkMode = () => {
+  document.body.classList.add("darkmode");
+  if (modeToggler.checked === false) {
+    modeToggler.checked = true;
+  }
+
+  localStorage.setItem("darkMode", "enabled");
+};
+
+const disableDarkMode = () => {
+  document.body.classList.remove("darkmode");
+  if (modeToggler.checked === true) {
+    modeToggler.checked = false;
+  }
+  localStorage.setItem("darkMode", null);
+};
+
+if (darkMode === "enabled") {
+  enableDarkMode();
+}
+
+modeToggler.addEventListener("change", () => {
+  darkMode = localStorage.getItem("darkMode");
+  if (darkMode !== "enabled") {
+    console.log("checking");
+    enableDarkMode();
+  } else {
+    console.log("unchecking");
+    disableDarkMode();
+  }
+});

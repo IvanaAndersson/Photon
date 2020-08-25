@@ -1,0 +1,127 @@
+:root {
+  --toggleHeight: 40px;
+  --toggleWidth: 120px;
+
+  --toggleBtnRadius: 48px;
+  --toggleBtnColor: #f1f1f1;
+
+  --toggle-bgColor--inactive: #a2a2a2;
+  --toggle-bgColor--active: #02805a;
+
+  --toggle-textColor: #fff;
+}
+
+.toggle {
+  display: inline-block;
+  text-align: center;
+  margin-top: 0.75rem;
+  user-select: none;
+}
+
+.toggle--checkbox {
+  display: none;
+}
+
+.toggle--btn {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.4em;
+  transition: all 350ms ease-in;
+}
+
+.toggle--btn:hover {
+  cursor: pointer;
+}
+
+.toggle--btn:before,
+.toggle--checkbox:before,
+.toggle--feature:before,
+.toggle--btn:after,
+.toggle--checkbox:after,
+.toggle--feature:after {
+  content: "";
+  display: block;
+}
+
+.toggle--btn,
+.toggle--checkbox,
+.toggle--feature,
+.toggle--btn:before,
+.toggle--checkbox:before,
+.toggle--feature:before,
+.toggle--btn:after,
+.toggle--checkbox:after,
+.toggle--feature:after {
+  transition: all 250ms ease-in;
+}
+
+.toggle--btn {
+  position: relative;
+  width: var(--toggleWidth);
+  height: var(--toggleHeight);
+  text-transform: uppercase;
+  color: var(--toggle-textColor);
+  background: var(--toggle-bgColor--active);
+  box-shadow: inset 0 20px 40px -10px #7b9d25;
+  border-radius: 40px;
+}
+
+.toggle--btn:before {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translateY(-50%);
+
+  width: var(--toggleBtnRadius);
+  height: var(--toggleBtnRadius);
+  border-radius: 50%;
+  background: var(--toggleBtnColor);
+  box-shadow: 0 4px 10px 0 #999, inset 0 10px 10px 8px rgba(241, 241, 241, 0.6),
+    inset 0 0 8px 0px #333, inset 0 0 0 13px #ccc,
+    inset 0 0 0 14px rgb(241, 241, 241);
+
+  text-indent: -100%;
+}
+
+.toggle--feature {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: var(--toggleHeight);
+  text-shadow: 0 1px 2px #666;
+}
+
+.toggle--feature:before,
+.toggle--feature:after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.toggle--feature:before {
+  content: attr(data-label-on);
+  left: 20%;
+}
+
+.toggle--feature:after {
+  content: attr(data-label-off);
+  right: -60%;
+}
+
+.toggle--checkbox:checked + .toggle--btn {
+  background: var(--toggle-bgColor--inactive);
+  box-shadow: inset 0 20px 40px -10px #7e7e7e;
+}
+
+.toggle--checkbox:checked + .toggle--btn:before {
+  left: 0;
+}
+
+.toggle--checkbox:checked + .toggle--btn .toggle--feature:before {
+  left: -60%;
+}
+
+.toggle--checkbox:checked + .toggle--btn .toggle--feature:after {
+  right: 20%;
+}
