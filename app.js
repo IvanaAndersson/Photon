@@ -19,7 +19,10 @@ const renderPictures = (data) => {
         createElement(
           "div",
           [
-            createElement("p", "Photo by " + photo.photographer),
+            createElement("a", "Photo by " + photo.photographer, {
+              href: photo.photographer_url,
+              target: "_blank",
+            }),
             createElement("a", "Download", {
               href: photo.src.original,
               target: "_blank",
@@ -30,9 +33,14 @@ const renderPictures = (data) => {
         ),
         ,
       ],
-      { className: "gallery-img" }
+      { className: "gallery-item" }
     );
 
+    if (photo.width < photo.height) {
+      galleryDiv.classList.add("portrait");
+    } else {
+      galleryDiv.classList.add("landscape");
+    }
     gallery.appendChild(galleryDiv);
   });
 };
@@ -40,6 +48,12 @@ const renderPictures = (data) => {
 searchInput.addEventListener("input", (e) => {
   searchValue = e.target.value;
 });
+
+const curatedPhotos = async () => {
+  const data = await fetchPictures("curated", "", 10);
+  console.log(data);
+  renderPictures(data);
+};
 
 const clear = () => {
   gallery.innerHTML = "";
@@ -49,10 +63,12 @@ const clear = () => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   clear();
-  const queryText = searchValue;
-  const data = await fetchPictures("search", queryText, 5);
-  heading.textContent = `Your results for '${queryText}'`;
-  renderPictures(data);
+  if (searchValue !== "") {
+    const queryText = searchValue;
+    const data = await fetchPictures("search", queryText, 10);
+    heading.textContent = `Your results for '${queryText}'`;
+    renderPictures(data);
+  }
 });
 
 // TOGGLING LIGHT AND DARK MODE
@@ -90,3 +106,6 @@ modeToggler.addEventListener("change", () => {
     disableDarkMode();
   }
 });
+
+// LOADING SOME SAMPLE PICTURES AT PAGE LOAD
+curatedPhotos();
