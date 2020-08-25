@@ -6,7 +6,7 @@ const form = document.querySelector(".search-form");
 const gallery = document.getElementById("gallery");
 const heading = document.getElementById("heading");
 
-let searchValue;
+let searchValue = "";
 
 const renderPictures = (data) => {
   data.photos.forEach((photo) => {
@@ -62,8 +62,8 @@ const clear = () => {
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  clear();
   if (searchValue !== "") {
+    clear();
     const queryText = searchValue;
     const data = await fetchPictures("search", queryText, 10);
     heading.textContent = `Your results for '${queryText}'`;
