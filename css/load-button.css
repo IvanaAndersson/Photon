@@ -1,0 +1,61 @@
+.more-button {
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.more {
+  display: inline-block;
+
+  padding: 1rem 3rem;
+  border: 1px solid #00b982;
+
+  transition: width 0.1s ease, height 0.4s ease, border-width 0.4s ease,
+    border-radius 0.4s ease, border-color 0.4s ease, padding 0.4s ease;
+}
+
+.more:focus {
+  outline: none;
+  border-color: var(--toggle-bgColor--active); /*taken from the toggle.css */
+}
+.more:hover {
+  background: var(--toggle-bgColor--active);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.more.loading {
+  height: 25px;
+  width: 25px;
+  padding: 0;
+
+  border-width: 2px;
+  border-radius: 17px;
+  border-color: #ccc #ccc #ccc #999;
+  background: #fff;
+
+  font-size: 0;
+  color: transparent;
+  pointer-events: none;
+
+  animation: spin 1s infinite linear;
+}
+
+/*
+--------------------------------------------------------------------------------
+DARK MODE STYLES
+--------------------------------------------------------------------------------
+*/
+
+.darkmode .more.loading {
+  border-color: #eeeeee #eeeeee #eeeeee #aaaaaa;
+  background: rgb(43, 43, 43);
+}

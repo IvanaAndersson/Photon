@@ -1,4 +1,5 @@
 @import "./toggle.css";
+@import "./load-button.css";
 
 :root {
   --color-text: #ffffff;
@@ -125,17 +126,6 @@ button {
 .img-properties a {
   text-decoration: none;
   color: rgba(43, 43, 43, 0.6);
-}
-
-.more-button {
-  min-height: 30vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.more {
-  padding: 1rem 3rem;
 }
 
 /*

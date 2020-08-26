@@ -5,8 +5,11 @@ const searchInput = document.querySelector("#search");
 const form = document.querySelector(".search-form");
 const gallery = document.getElementById("gallery");
 const heading = document.getElementById("heading");
+const moreButton = document.querySelector(".more");
 
+let currentSearch = "";
 let searchValue = "";
+let pageNumber = 1;
 
 const renderPictures = (data) => {
   data.photos.forEach((photo) => {
@@ -51,7 +54,6 @@ searchInput.addEventListener("input", (e) => {
 
 const curatedPhotos = async () => {
   const data = await fetchPictures("curated", "", 10);
-  console.log(data);
   renderPictures(data);
 };
 
@@ -63,10 +65,28 @@ const clear = () => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (searchValue !== "") {
+    currentSearch = searchValue;
     clear();
     const queryText = searchValue;
     const data = await fetchPictures("search", queryText, 10);
     heading.textContent = `Your results for '${queryText}'`;
+    renderPictures(data);
+  }
+});
+
+moreButton.addEventListener("click", async () => {
+  moreButton.classList.add("loading");
+  setTimeout(() => {
+    moreButton.classList.remove("loading");
+  }, 1500);
+  clearTimeout();
+
+  pageNumber++;
+  if (currentSearch) {
+    const data = await fetchPictures("search", currentSearch, 10, pageNumber);
+    renderPictures(data);
+  } else {
+    const data = await fetchPictures("curated", "", 10, pageNumber);
     renderPictures(data);
   }
 });
